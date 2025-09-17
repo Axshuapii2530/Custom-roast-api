@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Roast Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+    .roast-box {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #444;
+      max-width: 500px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #f33;
+      color: white;
+    }
+    button:hover {
+      background: #d11;
+    }
+  </style>
+</head>
+<body>
+  <div class="roast-box">
+    <h1>🔥 Roast Generator 🔥</h1>
+    <p id="roast">Loading...</p>
+    <button onclick="getRoast()">New Roast</button>
+  </div>
+
+  <script>
+    async function getRoast() {
+      const name = "Amn"; // yahan apna naam ya custom input de sakte ho
+      const res = await fetch(`/api/roast?name=${name}`);
+      const data = await res.json();
+      document.getElementById("roast").textContent = data.roast;
+    }
+
+    // Page load pe ek roast show karo
+    getRoast();
+  </script>
+</body>
+</html>
